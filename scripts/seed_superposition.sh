@@ -85,11 +85,15 @@ show_progress() {
     remaining=$((width - completed))
 
     printf "\r%-18s [" "$label"
-    for ((progress_index = 0; progress_index < completed; progress_index++)); do
+    progress_index=0
+    while [ "$progress_index" -lt "$completed" ]; do
         printf "#"
+        progress_index=$((progress_index + 1))
     done
-    for ((progress_index = 0; progress_index < remaining; progress_index++)); do
+    progress_index=0
+    while [ "$progress_index" -lt "$remaining" ]; do
         printf "-"
+        progress_index=$((progress_index + 1))
     done
     printf "] %3d%% (%d/%d)" "$percent" "$current" "$total"
 
